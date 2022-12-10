@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { s } from "./App.style";
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
+import { SearchBar } from "./components/SearchBar/SearchBar.style";
 
 export default function App() {
   const [isFontLoaded] = useFonts({
@@ -15,6 +16,9 @@ export default function App() {
     <SafeAreaView style={s.container}>
       <View style={s.meteo_container}>
         <MeteoBasic />
+      </View>
+      <View style={s.searchbar_container}>
+        <SearchBar />
       </View>
       <View style={s.advanced_meteo_container}>
         <View style={{ backgroundColor: "blue", height: 150 }} />
