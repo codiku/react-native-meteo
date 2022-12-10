@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 
 import { s } from "./MeteoBasic.style";
 
-export function MeteoBasic() {
+export function MeteoBasic({ city }) {
   return (
     <>
       <View style={s.timeContainer}>
@@ -10,7 +10,7 @@ export function MeteoBasic() {
       </View>
 
       <View>
-        <Text style={{ fontSize: 30 }}>City</Text>
+        <Text style={{ fontSize: 30 }}>{city}</Text>
       </View>
 
       <View style={s.weather}>

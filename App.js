@@ -3,18 +3,17 @@ import * as Location from "expo-location";
 import { Text, View } from "react-native";
 import { useEffect, useState } from "react";
 
+import { LocationAccuracy } from "expo-location";
+import { MeteoAPI } from "./api/meteo-api";
 import { MeteoBasic } from "./components/MeteoBasic/MeteoBasic";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SearchBar } from "./components/SearchBar/SearchBar.style";
-import axios from "axios";
 import { s } from "./App.style";
 import { useFonts } from "expo-font";
 
-const API_URL =
-  "https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&daily=weathercode,temperature_2m_max,sunrise,sunset,windspeed_10m_max&timezone=Europe%2FBerlin&current_weather=true";
-
 export default function App() {
   const [coordinates, setCoordinates] = useState();
+  const [city, setCity] = useState();
   const [weatherData, setWeatherData] = useState();
   const [isFontLoaded] = useFonts({
     "Alata-Regular": require("./assets/fonts/Alata-Regular.ttf"),
@@ -27,12 +26,17 @@ export default function App() {
   useEffect(() => {
     if (coordinates) {
       fetchWeather();
+      fetchCity();
     }
   }, [coordinates]);
 
+  async function fetchCity() {
+    const cityResponse = await MeteoAPI.fetchCityByCoords(coordinates);
+    setCity(cityResponse);
+  }
   async function fetchWeather() {
-    const weatherResponse = await axios.get(API_URL);
-    setWeatherData(weatherResponse.data);
+    const weatherResponse = await MeteoAPI.fetchWeatherByCoords(coordinates);
+    setWeatherData(weatherResponse);
   }
   async function getUserCoordinates() {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -41,17 +45,17 @@ export default function App() {
       setCoordinates({ lat: "48.85", lng: "2.35" });
       return;
     }
-    let location = await Location.getCurrentPositionAsync({});
+    let location = await Location.getCurrentPositionAsync();
     setCoordinates({
       lat: location.coords.latitude,
       lng: location.coords.longitude,
     });
   }
 
-  return isFontLoaded && weatherData ? (
+  return isFontLoaded && weatherData && city ? (
     <SafeAreaView style={s.container}>
       <View style={s.meteo_container}>
-        <MeteoBasic />
+        <MeteoBasic city={city} />
       </View>
       <View style={s.searchbar_container}>
         <SearchBar />
