@@ -6,9 +6,14 @@ export const s = StyleSheet.create({
     padding: 20,
   },
   meteo_container: {
-    flex: 1,
+    flex: 3,
     backgroundColor: "red",
     justifyContent: "space-between",
+  },
+  searchbar_container: {
+    flex: 3,
+    alignItems: "center",
+    backgroundColor: "green",
   },
   advanced_meteo_container: {
     flex: 2,

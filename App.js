@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { MeteoBasic } from "./components/MeteoBasic/MeteoBasic";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { SearchBar } from "./components/SearchBar/SearchBar.style";
 import axios from "axios";
 import { s } from "./App.style";
 import { useFonts } from "expo-font";
@@ -21,14 +22,17 @@ export default function App() {
     setWeatherData(weatherResponse.data);
   }
   useEffect(() => {
-    fetchWeather();
+    //  fetchWeather();
   }, []);
 
   console.log(weatherData);
-  return isFontLoaded ? (
+  return isFontLoaded && weatherData ? (
     <SafeAreaView style={s.container}>
       <View style={s.meteo_container}>
         <MeteoBasic />
+      </View>
+      <View style={s.searchbar_container}>
+        <SearchBar />
       </View>
       <View style={s.advanced_meteo_container}>
         <View style={{ backgroundColor: "blue", height: 150 }} />
