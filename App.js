@@ -8,11 +8,14 @@ export default function App() {
   const [isFontLoaded] = useFonts({
     "Alata-Regular": require("./assets/fonts/Alata-Regular.ttf"),
   });
-  return (
+  return isFontLoaded ? (
     <SafeAreaView>
-      {isFontLoaded && (
-        <Text style={{ fontFamily: "Alata-Regular", fontSize: 50 }}>Hello</Text>
-      )}
+      <View style={s.meteo_container}>
+        <View />
+      </View>
+      <View style={s.advanced_meteo_container}>
+        <View />
+      </View>
     </SafeAreaView>
-  );
+  ) : null;
 }
