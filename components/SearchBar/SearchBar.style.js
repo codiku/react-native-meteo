@@ -1,9 +1,9 @@
-import { Text } from "react-native";
+import { Txt } from "../Txt/Txt";
 
 export function SearchBar() {
   return (
     <>
-      <Text>SearchBar</Text>
+      <Txt></Txt>
     </>
   );
 }

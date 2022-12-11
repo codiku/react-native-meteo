@@ -16,7 +16,11 @@ export const s = StyleSheet.create({
     fontSize: 150,
   },
   image: {
-    height: 50,
-    width: 50,
+    height: 90,
+    width: 90,
+  },
+  interpretation_label: {
+    fontSize: 20,
+    transform: [{ rotate: "-90deg" }, { translateY: 20 }, { translateX: -30 }],
   },
 });

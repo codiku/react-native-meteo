@@ -1,11 +1,11 @@
-import { Text, View } from "react-native";
-
+import { Txt } from "../Txt/Txt";
+import { View } from "react-native";
 import { s } from "./SearchBar.style";
 
 export function SearchBar() {
   return (
     <>
-      <Text>SearchBar</Text>
+      <Txt>SearchBar</Txt>
     </>
   );
 }

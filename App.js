@@ -1,9 +1,8 @@
 import * as Location from "expo-location";
 
-import { ImageBackground, Text, View } from "react-native";
+import { ImageBackground, View } from "react-native";
 import { useEffect, useState } from "react";
 
-import { LocationAccuracy } from "expo-location";
 import { MeteoAPI } from "./api/meteo-api";
 import { MeteoBasic } from "./components/MeteoBasic/MeteoBasic";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -58,12 +57,13 @@ export default function App() {
       source={require("./assets/background.png")}
       resizeMode="cover"
       style={s.background}
+      imageStyle={s.background_image}
     >
       <SafeAreaView style={s.container}>
         <View style={s.meteo_container}>
           <MeteoBasic
             city={city}
-            temperature={weatherData["current_weather"].temperature}
+            temperature={parseInt(weatherData["current_weather"].temperature)}
             interpretation={getWeatherIntepration(
               weatherData["current_weather"].weathercode
             )}

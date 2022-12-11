@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Text } from "react-native";
+import { Txt } from "../Txt/Txt";
 import { nowToHHMM } from "./../../services/date-time";
 
 export function Clock() {
@@ -14,5 +14,5 @@ export function Clock() {
       clearInterval(interval);
     };
   }, []);
-  return <Text>{time}</Text>;
+  return <Txt>{time}</Txt>;
 }
