@@ -1,6 +1,6 @@
 import * as Location from "expo-location";
 
-import { Text, View } from "react-native";
+import { ImageBackground, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 
 import { LocationAccuracy } from "expo-location";
@@ -54,22 +54,28 @@ export default function App() {
   }
 
   return isFontLoaded && weatherData && city ? (
-    <SafeAreaView style={s.container}>
-      <View style={s.meteo_container}>
-        <MeteoBasic
-          city={city}
-          temperature={weatherData["current_weather"].temperature}
-          interpretation={getWeatherIntepration(
-            weatherData["current_weather"].weathercode
-          )}
-        />
-      </View>
-      <View style={s.searchbar_container}>
-        <SearchBar />
-      </View>
-      <View style={s.advanced_meteo_container}>
-        <View style={{ height: 150 }} />
-      </View>
-    </SafeAreaView>
+    <ImageBackground
+      source={require("./assets/background.png")}
+      resizeMode="cover"
+      style={s.background}
+    >
+      <SafeAreaView style={s.container}>
+        <View style={s.meteo_container}>
+          <MeteoBasic
+            city={city}
+            temperature={weatherData["current_weather"].temperature}
+            interpretation={getWeatherIntepration(
+              weatherData["current_weather"].weathercode
+            )}
+          />
+        </View>
+        <View style={s.searchbar_container}>
+          <SearchBar />
+        </View>
+        <View style={s.advanced_meteo_container}>
+          <View style={{ height: 150 }} />
+        </View>
+      </SafeAreaView>
+    </ImageBackground>
   ) : null;
 }
