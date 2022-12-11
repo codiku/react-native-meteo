@@ -23,7 +23,7 @@ export const s = StyleSheet.create({
     alignItems: "center",
   },
   advanced_meteo_container: {
-    flex: 2,
+    flex: 1.5,
     justifyContent: "flex-end",
   },
 });

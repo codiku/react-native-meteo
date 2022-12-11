@@ -4,6 +4,7 @@ import { ImageBackground, View } from "react-native";
 import { useEffect, useState } from "react";
 
 import { MeteoAPI } from "./api/meteo-api";
+import { MeteoAdvanced } from "./components/MeteoAdvanced/MeteoAdvanced";
 import { MeteoBasic } from "./components/MeteoBasic/MeteoBasic";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SearchBar } from "./components/SearchBar/SearchBar.style";
@@ -51,6 +52,7 @@ export default function App() {
       lng: location.coords.longitude,
     });
   }
+  const currentWeather = weatherData && weatherData["current_weather"];
 
   return isFontLoaded && weatherData && city ? (
     <ImageBackground
@@ -63,17 +65,19 @@ export default function App() {
         <View style={s.meteo_container}>
           <MeteoBasic
             city={city}
-            temperature={parseInt(weatherData["current_weather"].temperature)}
-            interpretation={getWeatherIntepration(
-              weatherData["current_weather"].weathercode
-            )}
+            temperature={parseInt(currentWeather.temperature)}
+            interpretation={getWeatherIntepration(currentWeather.weathercode)}
           />
         </View>
         <View style={s.searchbar_container}>
           <SearchBar />
         </View>
         <View style={s.advanced_meteo_container}>
-          <View style={{ height: 150 }} />
+          <MeteoAdvanced
+            windspeed={currentWeather.windspeed}
+            dusk={weatherData.daily.sunrise[0].split("T")[1]}
+            dawn={weatherData.daily.sunset[0].split("T")[1]}
+          />
         </View>
       </SafeAreaView>
     </ImageBackground>
