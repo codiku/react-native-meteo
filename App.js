@@ -8,6 +8,7 @@ import { MeteoAPI } from "./api/meteo-api";
 import { MeteoBasic } from "./components/MeteoBasic/MeteoBasic";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SearchBar } from "./components/SearchBar/SearchBar.style";
+import { getWeatherIntepration } from "./services/weather";
 import { s } from "./App.style";
 import { useFonts } from "expo-font";
 
@@ -55,13 +56,19 @@ export default function App() {
   return isFontLoaded && weatherData && city ? (
     <SafeAreaView style={s.container}>
       <View style={s.meteo_container}>
-        <MeteoBasic city={city} />
+        <MeteoBasic
+          city={city}
+          temperature={weatherData["current_weather"].temperature}
+          interpretation={getWeatherIntepration(
+            weatherData["current_weather"].weathercode
+          )}
+        />
       </View>
       <View style={s.searchbar_container}>
         <SearchBar />
       </View>
       <View style={s.advanced_meteo_container}>
-        <View style={{ backgroundColor: "blue", height: 150 }} />
+        <View style={{ height: 150 }} />
       </View>
     </SafeAreaView>
   ) : null;

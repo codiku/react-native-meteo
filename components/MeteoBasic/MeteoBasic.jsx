@@ -1,8 +1,8 @@
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 
 import { s } from "./MeteoBasic.style";
 
-export function MeteoBasic({ city }) {
+export function MeteoBasic({ city, temperature, interpretation }) {
   return (
     <>
       <View style={s.timeContainer}>
@@ -14,12 +14,14 @@ export function MeteoBasic({ city }) {
       </View>
 
       <View style={s.weather}>
-        <Text style={{ transform: [{ rotate: "-90deg" }] }}>Weather</Text>
+        <Text style={{ transform: [{ rotate: "-90deg" }] }}>
+          {interpretation.label}
+        </Text>
       </View>
 
       <View style={s.temperatureContainer}>
-        <Text style={{ fontSize: 150 }}>XX°</Text>
-        <Text style={{ fontSize: 100 }}>#</Text>
+        <Text style={s.temperature}>{temperature}°</Text>
+        <Image style={s.image} source={interpretation.image} />
       </View>
     </>
   );

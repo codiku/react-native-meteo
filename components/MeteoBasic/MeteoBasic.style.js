@@ -12,4 +12,11 @@ export const s = StyleSheet.create({
     alignItems: "baseline",
     justifyContent: "space-between",
   },
+  temperature: {
+    fontSize: 150,
+  },
+  image: {
+    height: 50,
+    width: 50,
+  },
 });
