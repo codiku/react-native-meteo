@@ -1,6 +1,4 @@
-import { Text, View } from "react-native";
-
-import { s } from "./SearchBar.style";
+import { Text } from "react-native";
 
 export function SearchBar() {
   return (
