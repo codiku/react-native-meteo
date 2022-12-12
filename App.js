@@ -1,12 +1,11 @@
 import * as Location from "expo-location";
 
-import { ImageBackground, View } from "react-native";
+import { ImageBackground, View, SafeAreaView } from "react-native";
 import { useEffect, useState } from "react";
 
 import { MeteoAPI } from "./api/meteo-api";
 import { MeteoAdvanced } from "./components/MeteoAdvanced/MeteoAdvanced";
 import { MeteoBasic } from "./components/MeteoBasic/MeteoBasic";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { SearchBar } from "./components/SearchBar/SearchBar.style";
 import { getWeatherIntepration } from "./services/weather";
 import { s } from "./App.style";
