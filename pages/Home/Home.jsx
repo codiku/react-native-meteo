@@ -6,11 +6,12 @@ import { useEffect, useState } from "react";
 import { MeteoAPI } from "../../api/meteo-api";
 import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
 import { MeteoBasic } from "../../components/MeteoBasic/MeteoBasic";
-import { SearchBar } from "../../components/SearchBar/SearchBar.style";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { getWeatherIntepration } from "../../services/weather";
 import { s } from "./Home.style";
 import { useFonts } from "expo-font";
 import { useNavigation } from "@react-navigation/native";
+import { Container } from "../../components/Container/Container";
 
 export function Home() {
   const [coordinates, setCoordinates] = useState();
@@ -58,32 +59,25 @@ export function Home() {
     nav.navigate("Forecast", weatherData.daily);
   }
   return isFontLoaded && weatherData && city ? (
-    <ImageBackground
-      source={require("../../assets/background.png")}
-      resizeMode="cover"
-      style={s.background}
-      imageStyle={s.background_image}
-    >
-      <SafeAreaView style={s.container}>
-        <View style={s.meteo_container}>
-          <MeteoBasic
-            onPressTemperature={goToForecastPage}
-            city={city}
-            temperature={parseInt(currentWeather.temperature)}
-            interpretation={getWeatherIntepration(currentWeather.weathercode)}
-          />
-        </View>
-        <View style={s.searchbar_container}>
-          <SearchBar />
-        </View>
-        <View style={s.advanced_meteo_container}>
-          <MeteoAdvanced
-            windspeed={currentWeather.windspeed}
-            dusk={weatherData.daily.sunrise[0].split("T")[1]}
-            dawn={weatherData.daily.sunset[0].split("T")[1]}
-          />
-        </View>
-      </SafeAreaView>
-    </ImageBackground>
+    <Container>
+      <View style={s.meteo_container}>
+        <MeteoBasic
+          onPressTemperature={goToForecastPage}
+          city={city}
+          temperature={parseInt(currentWeather.temperature)}
+          interpretation={getWeatherIntepration(currentWeather.weathercode)}
+        />
+      </View>
+      <View style={s.searchbar_container}>
+        <SearchBar />
+      </View>
+      <View style={s.advanced_meteo_container}>
+        <MeteoAdvanced
+          windspeed={currentWeather.windspeed}
+          dusk={weatherData.daily.sunrise[0].split("T")[1]}
+          dawn={weatherData.daily.sunset[0].split("T")[1]}
+        />
+      </View>
+    </Container>
   ) : null;
 }
