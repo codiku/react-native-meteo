@@ -11,7 +11,7 @@ export const s = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 20,
+    margin: 15,
     zIndex: 2,
   },
   meteo_container: {

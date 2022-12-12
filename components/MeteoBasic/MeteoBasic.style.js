@@ -21,6 +21,6 @@ export const s = StyleSheet.create({
   },
   interpretation_label: {
     fontSize: 20,
-    transform: [{ rotate: "-90deg" }, { translateY: 20 }, { translateX: -30 }],
+    transform: [{ rotate: "-90deg" }],
   },
 });
