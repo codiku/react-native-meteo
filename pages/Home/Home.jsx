@@ -1,15 +1,13 @@
 import * as Location from "expo-location";
 
-import { ImageBackground, View, SafeAreaView } from "react-native";
+import { View } from "react-native";
 import { useEffect, useState } from "react";
-
 import { MeteoAPI } from "../../api/meteo-api";
 import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
 import { MeteoBasic } from "../../components/MeteoBasic/MeteoBasic";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { getWeatherIntepration } from "../../services/weather";
 import { s } from "./Home.style";
-import { useFonts } from "expo-font";
 import { useNavigation } from "@react-navigation/native";
 import { Container } from "../../components/Container/Container";
 
@@ -17,9 +15,7 @@ export function Home() {
   const [coordinates, setCoordinates] = useState();
   const [city, setCity] = useState();
   const [weatherData, setWeatherData] = useState();
-  const [isFontLoaded] = useFonts({
-    "Alata-Regular": require("../../assets/fonts/Alata-Regular.ttf"),
-  });
+
   const nav = useNavigation();
   const currentWeather = weatherData && weatherData["current_weather"];
 
@@ -58,7 +54,7 @@ export function Home() {
   function goToForecastPage() {
     nav.navigate("Forecast", weatherData.daily);
   }
-  return isFontLoaded && weatherData && city ? (
+  return weatherData && city ? (
     <Container>
       <View style={s.meteo_container}>
         <MeteoBasic

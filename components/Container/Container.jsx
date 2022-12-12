@@ -1,7 +1,7 @@
 import { ImageBackground, SafeAreaView } from "react-native";
 import { s } from "./Container.style";
 
-export function Container({ children }) {
+export function Container({ children, style }) {
   return (
     <ImageBackground
       source={require("../../assets/background.png")}
@@ -9,7 +9,7 @@ export function Container({ children }) {
       style={s.background}
       imageStyle={s.background_image}
     >
-      <SafeAreaView style={s.container}>{children}</SafeAreaView>
+      <SafeAreaView style={[s.container, style]}>{children}</SafeAreaView>
     </ImageBackground>
   );
 }
