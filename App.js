@@ -1,8 +1,6 @@
-import { Text, View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import { useEffect, useState } from "react";
-
 import { MeteoBasic } from "./components/MeteoBasic/MeteoBasic";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { SearchBar } from "./components/SearchBar/SearchBar.style";
 import axios from "axios";
 import { s } from "./App.style";
@@ -22,7 +20,7 @@ export default function App() {
     setWeatherData(weatherResponse.data);
   }
   useEffect(() => {
-    //  fetchWeather();
+     fetchWeather();
   }, []);
 
   console.log(weatherData);
