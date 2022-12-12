@@ -4,8 +4,9 @@ import { View, SafeAreaView } from "react-native";
 import { useEffect, useState } from "react";
 
 import { MeteoBasic } from "./components/MeteoBasic/MeteoBasic";
-import { SearchBar } from "./components/SearchBar/SearchBar.style";
 import axios from "axios";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { SearchBar } from "./components/SearchBar/SearchBar";
 import { s } from "./App.style";
 import { useFonts } from "expo-font";
 
