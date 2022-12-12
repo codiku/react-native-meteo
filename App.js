@@ -1,10 +1,9 @@
 import * as Location from "expo-location";
 
-import { Text, View } from "react-native";
+import { View, SafeAreaView } from "react-native";
 import { useEffect, useState } from "react";
 
 import { MeteoBasic } from "./components/MeteoBasic/MeteoBasic";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { SearchBar } from "./components/SearchBar/SearchBar.style";
 import axios from "axios";
 import { s } from "./App.style";
