@@ -19,7 +19,7 @@ export function StyledContainer({ children }) {
   return <View style={{ alignItems: "center" }}>{children}</View>;
 }
 export function StyledTxtLabel({ children }) {
-  return <Txt style={{ fontSize: 30 }}>{children}</Txt>;
+  return <Txt style={{ fontSize: 20 }}>{children}</Txt>;
 }
 
 export function StyledTxtValue({ children }) {
