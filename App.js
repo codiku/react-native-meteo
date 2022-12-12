@@ -1,7 +1,7 @@
+import { Forecast } from "./pages/Forecast/Forecast";
 import { Home } from "./pages/Home/Home";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Forecast } from "./pages/Forecast/Forecast";
 import { useFonts } from "expo-font";
 const Stack = createNativeStackNavigator();
 

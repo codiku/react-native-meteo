@@ -1,15 +1,16 @@
 import * as Location from "expo-location";
 
-import { View } from "react-native";
 import { useEffect, useState } from "react";
+
+import { Container } from "../../components/Container/Container";
 import { MeteoAPI } from "../../api/meteo-api";
 import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
 import { MeteoBasic } from "../../components/MeteoBasic/MeteoBasic";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
+import { View } from "react-native";
 import { getWeatherIntepration } from "../../services/weather";
 import { s } from "./Home.style";
 import { useNavigation } from "@react-navigation/native";
-import { Container } from "../../components/Container/Container";
 
 export function Home() {
   const [coordinates, setCoordinates] = useState();
@@ -52,7 +53,7 @@ export function Home() {
     });
   }
   function goToForecastPage() {
-    nav.navigate("Forecast", weatherData.daily);
+    nav.navigate("Forecast", {city, ...weatherData.daily});
   }
   return weatherData && city ? (
     <Container>

@@ -12,6 +12,6 @@ export const s = StyleSheet.create({
   container: {
     flex: 1,
     zIndex: 2,
-    margin: 15,
+    marginHorizontal: 15,
   },
 });
