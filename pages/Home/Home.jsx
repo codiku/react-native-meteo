@@ -54,9 +54,8 @@ export function Home() {
       lng: location.coords.longitude,
     });
   }
-
   function goToForecastPage() {
-    nav.navigate("Forecast", { super: { nice: "cool" } });
+    nav.navigate("Forecast", weatherData.daily);
   }
   return isFontLoaded && weatherData && city ? (
     <ImageBackground

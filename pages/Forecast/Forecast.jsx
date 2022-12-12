@@ -5,7 +5,6 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 export function Forecast({ navigation }) {
   const nav = useNavigation();
   const { params } = useRoute();
-  console.log(params);
   return (
     <TouchableOpacity
       onPress={() => nav.goBack()}
