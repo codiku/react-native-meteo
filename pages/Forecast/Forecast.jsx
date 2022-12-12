@@ -12,6 +12,7 @@ export function Forecast() {
   const nav = useNavigation();
   const { params } = useRoute();
   const forecast = params
+  
   const backButton = (
     <TouchableOpacity onPress={() => nav.goBack()}>
       <Txt style={s.back_txt}>{"<"}</Txt>
@@ -37,7 +38,6 @@ export function Forecast() {
         })
       }
     
-     
     </View>
   );
 

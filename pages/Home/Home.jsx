@@ -55,6 +55,7 @@ export function Home() {
   function goToForecastPage() {
     nav.navigate("Forecast", {city, ...weatherData.daily});
   }
+  
   return weatherData && city ? (
     <Container>
       <View style={s.meteo_container}>
