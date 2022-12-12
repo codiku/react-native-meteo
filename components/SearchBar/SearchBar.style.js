@@ -1,9 +1,3 @@
-import { Txt } from "../Txt/Txt";
+import { StyleSheet } from "react-native";
 
-export function SearchBar() {
-  return (
-    <>
-      <Txt></Txt>
-    </>
-  );
-}
+export const s = StyleSheet.create({});

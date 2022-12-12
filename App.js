@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import { MeteoAPI } from "./api/meteo-api";
 import { MeteoBasic } from "./components/MeteoBasic/MeteoBasic";
-import { SearchBar } from "./components/SearchBar/SearchBar.style";
+import { SearchBar } from "./components/SearchBar/SearchBar";
 import { getWeatherIntepration } from "./services/weather";
 import { s } from "./App.style";
 import { useFonts } from "expo-font";
