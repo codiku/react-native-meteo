@@ -1,6 +1,6 @@
 import * as Location from "expo-location";
 
-import { KeyboardAvoidingView, View } from "react-native";
+import { Alert, KeyboardAvoidingView, View } from "react-native";
 import { useEffect, useState } from "react";
 
 import { Container } from "../../components/Container/Container";
@@ -26,17 +26,19 @@ export function Home() {
 
   useEffect(() => {
     if (coordinates) {
-      fetchWeather();
-      fetchCity();
+      fetchWeather(coordinates);
+      fetchCity(coordinates);
     }
   }, [coordinates]);
 
-  async function fetchCity() {
-    const cityResponse = await MeteoAPI.fetchCityByCoords(coordinates);
+  async function fetchCity(coords) {
+
+    const cityResponse = await MeteoAPI.fetchCityByCoords(coords);
     setCity(cityResponse);
+
   }
-  async function fetchWeather() {
-    const weatherResponse = await MeteoAPI.fetchWeatherByCoords(coordinates);
+  async function fetchWeather(coords) {
+    const weatherResponse = await MeteoAPI.fetchWeatherByCoords(coords);
     setWeatherData(weatherResponse);
   }
   async function getUserCoordinates() {
@@ -56,6 +58,18 @@ export function Home() {
     nav.navigate("Forecast", { city, ...weatherData.daily });
   }
 
+  async function submitSearch(e) {
+    const city = e.nativeEvent.text
+    try {
+      const cityCoords = await MeteoAPI.fetchCoordsByCity(city)
+      setCoordinates(cityCoords)
+    }
+    catch (e) {
+      Alert.alert("Oups !", e)
+    }
+
+  }
+
   return weatherData && city ? (
 
     <Container>
@@ -69,10 +83,9 @@ export function Home() {
       </View>
 
       <View style={s.searchbar_container}>
-
-        <SearchBar />
-
+        <SearchBar onSubmit={submitSearch} />
       </View>
+
       <View style={s.advanced_meteo_container}>
         <MeteoAdvanced
           windspeed={currentWeather.windspeed}

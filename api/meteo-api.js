@@ -21,13 +21,17 @@ export class MeteoAPI {
   }
 
   static async fetchCoordsByCity(city) {
-    const resp = await axios.get(
-      `https://geocoding-api.open-meteo.com/v1/search?name=${city}`
-    );
-    const { latitude, longitude } = resp.data.results[0];
-    return {
-      lat: latitude,
-      lng: longitude,
-    };
+    try {
+      const resp = await axios.get(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${city}`
+      );
+      const { latitude, longitude } = resp.data.results[0];
+      return {
+        lat: latitude,
+        lng: longitude,
+      };
+    } catch (e) {
+      throw "Pas de coordonnées trouvées pour la recherche : " + city;
+    }
   }
 }
