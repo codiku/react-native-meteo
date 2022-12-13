@@ -7,7 +7,7 @@ export const s = StyleSheet.create({
   },
   searchbar_container: {
     flex: 3,
-    alignItems: "center",
+    marginTop: 50,
   },
   advanced_meteo_container: {
     flex: 1.5,

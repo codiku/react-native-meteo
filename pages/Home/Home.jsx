@@ -1,5 +1,6 @@
 import * as Location from "expo-location";
 
+import { KeyboardAvoidingView, View } from "react-native";
 import { useEffect, useState } from "react";
 
 import { Container } from "../../components/Container/Container";
@@ -7,7 +8,6 @@ import { MeteoAPI } from "../../api/meteo-api";
 import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
 import { MeteoBasic } from "../../components/MeteoBasic/MeteoBasic";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
-import { View } from "react-native";
 import { getWeatherIntepration } from "../../services/weather";
 import { s } from "./Home.style";
 import { useNavigation } from "@react-navigation/native";
@@ -53,10 +53,11 @@ export function Home() {
     });
   }
   function goToForecastPage() {
-    nav.navigate("Forecast", {city, ...weatherData.daily});
+    nav.navigate("Forecast", { city, ...weatherData.daily });
   }
-  
+
   return weatherData && city ? (
+
     <Container>
       <View style={s.meteo_container}>
         <MeteoBasic
@@ -66,8 +67,11 @@ export function Home() {
           interpretation={getWeatherIntepration(currentWeather.weathercode)}
         />
       </View>
+
       <View style={s.searchbar_container}>
+
         <SearchBar />
+
       </View>
       <View style={s.advanced_meteo_container}>
         <MeteoAdvanced
@@ -76,6 +80,9 @@ export function Home() {
           dawn={weatherData.daily.sunset[0].split("T")[1]}
         />
       </View>
+
     </Container>
+
+
   ) : null;
 }
