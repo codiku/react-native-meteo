@@ -1,6 +1,6 @@
 import * as Location from "expo-location";
 
-import { Alert, KeyboardAvoidingView, View } from "react-native";
+import { Alert, View } from "react-native";
 import { useEffect, useState } from "react";
 
 import { Container } from "../../components/Container/Container";
