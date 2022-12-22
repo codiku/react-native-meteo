@@ -1,14 +1,15 @@
 import { StyleSheet } from "react-native";
 
 const s = StyleSheet.create({
-  meteo_basic: {
-    flex: 2,
-  },
-  searchbar_container: {
-    flex: 2,
-  },
-  meteo_advanced: {
+  container: {
     flex: 1,
+  },
+  img_background: {
+    flex: 1,
+    backgroundColor: "black",
+  },
+  img: {
+    opacity: 0.75,
   },
 });
 
