@@ -21,7 +21,6 @@ export function Home() {
     }
   }, [coords]);
 
-  console.log(weather);
   async function getUserCoords() {
     let { status } = await requestForegroundPermissionsAsync();
     if (status === "granted") {
@@ -35,12 +34,15 @@ export function Home() {
     }
   }
 
-  async function fetchWeather(coords) {
+  async function fetchWeather(coordinates) {
     const weatherResponse = await MeteoAPI.fetchWeatherFromCoords(
-      coords
+      coordinates
     );
+
     setWeather(weatherResponse);
   }
+
+  console.log(weather);
 
   return (
     <>
