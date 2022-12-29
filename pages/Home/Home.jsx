@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { MeteoAPI } from "../../api/meteo";
 import { MeteoBasic } from "../../components/MeteoBasic/MeteoBasic";
 import { getWeatherInterpretation } from "../../services/meteo-service";
-
+import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
 export function Home() {
   const [coords, setCoords] = useState();
   const [weather, setWeather] = useState();
@@ -45,6 +45,7 @@ export function Home() {
     );
     setWeather(weatherResponse);
   }
+
   async function fetchCity(coordinates) {
     const cityResponse = await MeteoAPI.fetchCityFromCoords(
       coordinates
@@ -52,6 +53,7 @@ export function Home() {
     setCity(cityResponse);
   }
 
+  console.log(weather);
   return currentWeather ? (
     <>
       <View style={s.meteo_basic}>
@@ -64,7 +66,13 @@ export function Home() {
         />
       </View>
       <View style={s.searchbar_container}></View>
-      <View style={s.meteo_advanced}></View>
+      <View style={s.meteo_advanced}>
+        <MeteoAdvanced
+          wind={currentWeather.windspeed}
+          dusk={weather.daily.sunrise[0].split("T")[1]}
+          dawn={weather.daily.sunset[0].split("T")[1]}
+        />
+      </View>
     </>
   ) : null;
 }
