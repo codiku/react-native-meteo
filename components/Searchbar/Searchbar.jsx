@@ -1,0 +1,12 @@
+import { TextInput } from "react-native";
+import { s } from "./Searchbar.style.js";
+
+export function Searchbar({ onSubmit }) {
+  return (
+    <TextInput
+      onSubmitEditing={onSubmit}
+      style={s.input}
+      placeholder="Chercher une ville... Ex: Paris"
+    />
+  );
+}
