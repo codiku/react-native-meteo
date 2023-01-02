@@ -4,7 +4,7 @@ import { s } from "./Searchbar.style.js";
 export function Searchbar({ onSubmit }) {
   return (
     <TextInput
-      onSubmitEditing={onSubmit}
+      onSubmitEditing={(e) => onSubmit(e.nativeEvent.text)}
       style={s.input}
       placeholder="Chercher une ville... Ex: Paris"
     />
