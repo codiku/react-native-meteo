@@ -8,7 +8,7 @@ if (Expo.isExpoPushToken(TOKEN)) {
       to: TOKEN,
       title: "Info météo",
       body: `Salut du serveur !`,
-      data: { infos: "123" },
+      data: { infos: "1" },
       sound: "default",
     },
   ]);
