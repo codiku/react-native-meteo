@@ -12,13 +12,13 @@ import { MeteoAdvanced } from "../../components/MeteoAdvanced/MeteoAdvanced";
 import { useNavigation } from "@react-navigation/native";
 import { Container } from "../../components/Container/Container";
 import { Searchbar } from "../../components/Searchbar/Searchbar";
-import { getExpoPushTokenAsync } from "expo-notifications";
 
 export function Home() {
   const [coords, setCoords] = useState();
   const [weather, setWeather] = useState();
   const [city, setCity] = useState();
   const nav = useNavigation();
+
   const currentWeather = weather?.current_weather;
 
   useEffect(() => {
@@ -32,10 +32,6 @@ export function Home() {
     }
   }, [coords]);
 
-  async function subscribeToNotification() {
-    const token = await getExpoPushTokenAsync();
-    console.log("Le token", token);
-  }
   async function getUserCoords() {
     let { status } = await requestForegroundPermissionsAsync();
     if (status === "granted") {
