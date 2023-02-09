@@ -1,4 +1,4 @@
-import { Alert, View } from "react-native";
+import { Alert, KeyboardAvoidingView, View } from "react-native";
 import { s } from "./Home.style";
 import {
   requestForegroundPermissionsAsync,
