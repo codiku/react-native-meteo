@@ -21,7 +21,7 @@ export function Forecast({}) {
       {backButton}
       <View style={s.header_texts}>
         <Txt>{params.city}</Txt>
-        <Txt style={s.subtitle}>Prévisions sur 7 jours</Txt>
+        <Txt style={s.subtitle}>7 days forecast</Txt>
       </View>
     </View>
   );

@@ -18,7 +18,6 @@ const s = StyleSheet.create({
     fontSize: 20,
   },
   temperature: {
-    width: 50,
     textAlign: "right",
   },
 });

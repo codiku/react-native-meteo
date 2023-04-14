@@ -6,7 +6,7 @@ export function Searchbar({ onSubmit }) {
     <TextInput
       onSubmitEditing={(e) => onSubmit(e.nativeEvent.text)}
       style={s.input}
-      placeholder="Chercher une ville... Ex: Paris"
+      placeholder="Type a city... ex: Paris"
     />
   );
 }

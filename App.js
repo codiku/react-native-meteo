@@ -1,5 +1,4 @@
 import { Home } from "./pages/Home/Home";
-import AlataRegular from "./assets/fonts/Alata-Regular.ttf";
 import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -18,7 +17,7 @@ const navTheme = {
 
 export default function App() {
   const [isFontLoaded] = useFonts({
-    "Alata-Regular": AlataRegular,
+    "Alata-Regular": require("./assets/fonts/Alata-Regular.ttf"),
   });
 
   async function subscribeToNotifications() {
@@ -63,7 +62,6 @@ export default function App() {
     );
     subscribeToNotifications();
   }, []);
-
   return isFontLoaded ? (
     <NavigationContainer theme={navTheme}>
       <Stack.Navigator

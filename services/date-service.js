@@ -6,7 +6,7 @@ export function nowToHHMM() {
     .padStart(2, "0")}`;
 }
 
-export const DAYS = ["LUN", "MAR", "MER", "JEU", "VEN", "SAM", "DIM"];
+export const DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 export function dateToDDMM(date) {
   return `${date.getDate().toString().padStart(2, "0")}/${(
