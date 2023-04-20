@@ -9,16 +9,11 @@ import {
   getCurrentPositionAsync,
 } from "expo-location";
 import { MeteoAPI } from "./api/meteo";
-import { useFonts } from "expo-font";
 
 export default function App() {
   const [coordinates, setCoordinates] = useState();
   const [weather, setWeather] = useState();
-  const [isFontLoaded] = useFonts({
-    "Alata-Regular": require("./assets/fonts/Alata-Regular.ttf"),
-  });
 
-  console.log(isFontLoaded);
   useEffect(() => {
     getUserCoordinates();
   }, []);
@@ -28,6 +23,9 @@ export default function App() {
       fetchWeatherByCoords(coordinates);
     }
   }, [coordinates]);
+
+  console.log(coordinates);
+  console.log(weather);
 
   async function fetchWeatherByCoords(coords) {
     const weatherResponse = await MeteoAPI.fetchWeatherByCoords(coords);
@@ -55,7 +53,7 @@ export default function App() {
     >
       <SafeAreaProvider>
         <SafeAreaView style={s.container}>
-          {isFontLoaded && <Home />}
+          <Home />
         </SafeAreaView>
       </SafeAreaProvider>
     </ImageBackground>
