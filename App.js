@@ -1,5 +1,9 @@
 import { s } from "./App.style";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaProvider,
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import { Home } from "./pages/Home/Home";
 import { ImageBackground } from "react-native";
 import backgroundImg from "./assets/background.png";
@@ -17,6 +21,7 @@ export default function App() {
   const [isFontLoaded] = useFonts({
     "Alata-Regular": require("./assets/fonts/Alata-Regular.ttf"),
   });
+  // const insets = useSafeAreaInsets();
 
   useEffect(() => {
     getUserCoordinates();
