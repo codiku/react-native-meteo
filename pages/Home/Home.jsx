@@ -22,7 +22,11 @@ export function Home({ weather, city }) {
         <Txt>SearchBar</Txt>
       </View>
       <View style={s.meteo_advanced}>
-        <MeteoAdvanced />
+        <MeteoAdvanced
+          sunrise={weather.daily.sunrise[0].split("T")[1]}
+          sunset={weather.daily.sunset[0].split("T")[1]}
+          windspeed={currentWeather.windspeed}
+        />
       </View>
     </>
   );

@@ -10,15 +10,15 @@ export function MeteoAdvanced({ sunrise, sunset, windspeed }) {
   return (
     <View style={s.container}>
       <StyledContainer>
-        <StyledLabel>aeaz{sunrise}</StyledLabel>
+        <StyledLabel>{sunrise}</StyledLabel>
         <StyledValue>Sunrise</StyledValue>
       </StyledContainer>
       <StyledContainer>
-        <StyledLabel>ezeze{sunset}</StyledLabel>
+        <StyledLabel>{sunset}</StyledLabel>
         <StyledValue>Sunset</StyledValue>
       </StyledContainer>
       <StyledContainer>
-        <StyledLabel>zeze{windspeed}</StyledLabel>
+        <StyledLabel>{windspeed} km/h</StyledLabel>
         <StyledValue>Windspeed</StyledValue>
       </StyledContainer>
     </View>
