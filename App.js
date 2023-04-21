@@ -18,7 +18,6 @@ export default function App() {
     "Alata-Regular": require("./assets/fonts/Alata-Regular.ttf"),
   });
 
-  console.log(isFontLoaded);
   useEffect(() => {
     getUserCoordinates();
   }, []);
