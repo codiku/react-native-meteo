@@ -78,7 +78,10 @@ export default function App() {
           <SafeAreaView style={s.container}>
             {isFontLoaded && weather && (
               <Stack.Navigator
-                screenOptions={{ headerShown: false }}
+                screenOptions={{
+                  headerShown: false,
+                  animation: "fade",
+                }}
                 initialRouteName="Home"
               >
                 <Stack.Screen name="Home">
