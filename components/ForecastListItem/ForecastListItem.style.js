@@ -3,8 +3,9 @@ import { StyleSheet } from "react-native";
 const s = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     alignItems: "center",
+    paddingHorizontal: 20,
   },
   image: {
     width: 50,
