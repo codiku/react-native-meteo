@@ -19,7 +19,7 @@ export function MeteoAdvanced({ sunrise, sunset, windspeed }) {
       </StyledContainer>
       <StyledContainer>
         <StyledLabel>{windspeed} km/h</StyledLabel>
-        <StyledValue>Windspeed</StyledValue>
+        <StyledValue>Wind speed</StyledValue>
       </StyledContainer>
     </View>
   );
