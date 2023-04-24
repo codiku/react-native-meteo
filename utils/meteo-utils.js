@@ -20,7 +20,7 @@ export const WEATHER_INTERPRATIONS = [
     image: require("../assets/snow.png"),
   },
   {
-    codes: [96, 99],
+    codes: [95, 96, 99],
     label: "Thunderous",
     image: require("../assets/thunder.png"),
   },
