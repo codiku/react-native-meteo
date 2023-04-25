@@ -38,6 +38,20 @@ export default function App() {
 
   useEffect(() => {
     subscribeToNotifications();
+    // App is in background or killed and then the notification is pressed
+    Notifications.addNotificationResponseReceivedListener((response) => {
+      console.log(
+        "addNotificationResponseReceivedListener",
+        response.notification.request.content.data
+      );
+    });
+    // App is opened and notification and is received
+    Notifications.addNotificationReceivedListener((notification) => {
+      console.log(
+        "addNotificationReceivedListener",
+        notification.request.content.data
+      );
+    });
     getUserCoordinates();
   }, []);
 
@@ -73,6 +87,7 @@ export default function App() {
           projectId: Constants.expoConfig.extra.projectId,
         })
       ).data;
+      // Send the token to the backend for it to store
       console.log("Token EXPO", token);
     } else {
       alert("Must use physical device for Push Notifications");
