@@ -17,6 +17,9 @@ import { MeteoAPI } from "./api/meteo";
 import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as Notifications from "expo-notifications";
+import * as Device from "expo-device";
+import Constants from "expo-constants";
 const Stack = createNativeStackNavigator();
 
 const navTheme = {
@@ -34,6 +37,7 @@ export default function App() {
   });
 
   useEffect(() => {
+    subscribeToNotifications();
     getUserCoordinates();
   }, []);
 
@@ -43,6 +47,39 @@ export default function App() {
       fetchCityByCoords(coordinates);
     }
   }, [coordinates]);
+
+  async function subscribeToNotifications() {
+    let token;
+    if (Platform.OS === "android") {
+      await Notifications.setNotificationChannelAsync("default", {
+        name: "default",
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: "#FF231F7C",
+      });
+    }
+    if (Device.isDevice) {
+      const { status: existingStatus } =
+        await Notifications.getPermissionsAsync();
+      if (existingStatus !== "granted") {
+        const { status } = await Notifications.requestPermissionsAsync();
+        if (status !== "granted") {
+          alert("Failed to get permissions");
+          return;
+        }
+      }
+      token = (
+        await Notifications.getExpoPushTokenAsync({
+          projectId: Constants.expoConfig.extra.projectId,
+        })
+      ).data;
+      console.log("Token EXPO", token);
+    } else {
+      alert("Must use physical device for Push Notifications");
+    }
+
+    return token;
+  }
 
   async function fetchWeatherByCoords(coords) {
     const weatherResponse = await MeteoAPI.fetchWeatherByCoords(coords);

@@ -11,7 +11,6 @@ export function MeteoBasic({
   dailyWeather,
 }) {
   const nav = useNavigation();
-  console.log({ city, ...dailyWeather });
   return (
     <>
       <View style={s.clock}>
