@@ -20,6 +20,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import Constants from "expo-constants";
+import { LearningAnimations } from "./pages/LearningAnimations/LearningAnimations";
 const Stack = createNativeStackNavigator();
 
 const navTheme = {
@@ -36,6 +37,7 @@ export default function App() {
     "Alata-Regular": require("./assets/fonts/Alata-Regular.ttf"),
   });
 
+  /*
   useEffect(() => {
     subscribeToNotifications();
     // App is in background or killed and then the notification is pressed
@@ -61,7 +63,7 @@ export default function App() {
       fetchCityByCoords(coordinates);
     }
   }, [coordinates]);
-
+*/
   async function subscribeToNotifications() {
     let token;
     if (Platform.OS === "android") {
@@ -137,13 +139,13 @@ export default function App() {
       >
         <SafeAreaProvider>
           <SafeAreaView style={s.container}>
-            {isFontLoaded && weather && (
+            {isFontLoaded && (
               <Stack.Navigator
                 screenOptions={{
                   headerShown: false,
                   animation: "fade",
                 }}
-                initialRouteName="Home"
+                initialRouteName="LearnAnimations"
               >
                 <Stack.Screen name="Home">
                   {() => (
@@ -155,6 +157,7 @@ export default function App() {
                   )}
                 </Stack.Screen>
                 <Stack.Screen name="Forecasts" component={Forecasts} />
+                <Stack.Screen name="LearnAnimations" component={LearningAnimations} />
               </Stack.Navigator>
             )}
           </SafeAreaView>
