@@ -1,22 +1,28 @@
 import { useEffect, useRef, useState } from "react"
-import { Animated, Dimensions, View } from "react-native"
-
+import { Animated, Dimensions, Easing, View } from "react-native"
+import { WaterDrop } from "../../components/WaterDrop/WaterDrop";
 export function LearningAnimations() {
-    const opacity = useRef(new Animated.Value(0)).current;
-    const x = useRef(new Animated.Value(0)).current;
+    let uniqId = 0
+    const [droplist, setDroplist] = useState([{ x: 0, id: 99 }])
+
     useEffect(() => {
-        Animated.timing(opacity, {
-            toValue: 1,
-            duration: 3000,
-            useNativeDriver: true,
-        }).start();
-        Animated.timing(x, {
-            toValue: 200,
-            duration: 3000,
-            useNativeDriver: true,
-        }).start();
+        setInterval(() => {
+            addDropRandomX()
+        }, 200)
     }, [])
+
+    function addDropRandomX() {
+        const randomX = Math.floor(Math.random() * Dimensions.get("screen").width) + 1;
+        uniqId++
+
+        setDroplist(list => [...list, { x: randomX, id: uniqId }])
+
+    }
+
+
     return <View>
-        <Animated.View style={{ backgroundColor: "orange", height: 100, width: 100, opacity: opacity, transform: [{ translateX: x }] }} />
+        {droplist.map(d => <WaterDrop key={d.id} drop={d} />)}
     </View>
 }
+/*
+*/
