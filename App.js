@@ -63,7 +63,7 @@ export default function App() {
       fetchCityByCoords(coordinates);
     }
   }, [coordinates]);
-*/
+
   async function subscribeToNotifications() {
     let token;
     if (Platform.OS === "android") {
@@ -131,6 +131,7 @@ export default function App() {
   }
 
   return (
+
     <NavigationContainer theme={navTheme}>
       <ImageBackground
         imageStyle={s.img}
@@ -164,5 +165,9 @@ export default function App() {
         </SafeAreaProvider>
       </ImageBackground>
     </NavigationContainer>
+              
+                           
   );
+  */
+  return <LearningAnimations/>    
 }

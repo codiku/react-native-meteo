@@ -1,28 +1,56 @@
-import { useEffect, useRef, useState } from "react"
-import { Animated, Dimensions, Easing, View } from "react-native"
+import { Dimensions, View } from "react-native"
 import { WaterDrop } from "../../components/WaterDrop/WaterDrop";
+import Animated, {
+    useSharedValue,
+    withSpring,
+    useAnimatedStyle,
+    useAnimatedGestureHandler,
+    withTiming,
+} from 'react-native-reanimated';
+import { PanGestureHandler } from "react-native-gesture-handler";
+import { useEffect } from "react";
+import { StyleSheet } from "react-native";
+const LEFT_SCREEN = 0
+const RIGHT_SCREEN = Dimensions.get("window").width
+const TOP_SCREEN = 0
+const BOT_SCREEN = Dimensions.get("window").height
+const SQUARE_SIZE = 100
 export function LearningAnimations() {
-    let uniqId = 0
-    const [droplist, setDroplist] = useState([{ x: 0, id: 99 }])
 
+    const x = useSharedValue(0);
+    /*
+        const gestureHandler = useAnimatedGestureHandler({
+            onStart: (_, ctx) => {
+                ctx.startX = 0;
+            },
+            onActive: (event, ctx) => {
+                x.value = ctx.startX + event.translationX;
+            },
+    
+        });
+         */
     useEffect(() => {
-        setInterval(() => {
-            addDropRandomX()
-        }, 200)
+        x.value = withTiming(RIGHT_SCREEN - SQUARE_SIZE, { duration: 2000 })
     }, [])
 
-    function addDropRandomX() {
-        const randomX = Math.floor(Math.random() * Dimensions.get("screen").width) + 1;
-        uniqId++
+    const animatedStyle = useAnimatedStyle(() => {
+        return {
+            transform: [
+                {
+                    translateX: x.value,
+                },
+            ],
+        };
+    });
 
-        setDroplist(list => [...list, { x: randomX, id: uniqId }])
+    return <>
+        <Animated.View style={[s.square, animatedStyle]} />
+    </>
 
-    }
-
-
-    return <View>
-        {droplist.map(d => <WaterDrop key={d.id} drop={d} />)}
-    </View>
 }
 /*
 */
+
+const s = StyleSheet.create({
+    square: { backgroundColor: 'blue', height: SQUARE_SIZE, width: SQUARE_SIZE }
+})
