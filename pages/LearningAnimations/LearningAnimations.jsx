@@ -39,6 +39,7 @@ export function LearningAnimations() {
             opacity: animSquareOpacity.value
         };
     });
+
     /* Sending the animation style to Animated.View */
     return <Animated.View style={[s.square, animatedStyle]} />
 
