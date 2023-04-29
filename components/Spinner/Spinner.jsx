@@ -1,4 +1,4 @@
-import { Dimensions, SafeAreaView, Text, View } from "react-native"
+import { Dimensions, Image, SafeAreaView, Text, View } from "react-native"
 import { WaterDrop } from "../WaterDrop/WaterDrop";
 import Animated, {
     useSharedValue,
@@ -29,9 +29,9 @@ export function Spinner() {
 
     /* Running animations */
     useEffect(() => {
-        animSquareRotateX.value = withRepeat(withTiming("360deg", { duration: 3000 }), -1)
-        animSquarebackgroundColor.value = withRepeat(withTiming("#FCC77A", { duration: 3000 }), -1, true)
-        animSquareScale.value = withRepeat(withTiming(1.5, { duration: 3000 }), -1)
+        animSquareRotateX.value = withRepeat(withTiming("360deg", { duration: 1000 }), -1)
+        animSquarebackgroundColor.value = withRepeat(withTiming("#FCC77A", { duration: 1000 }), -1, true)
+        animSquareScale.value = withRepeat(withTiming(3, { duration: 1000 }), -1)
     }, [])
 
     /* Associating animations to style properties */
@@ -43,14 +43,13 @@ export function Spinner() {
                 },
                 { scale: animSquareScale.value }
             ],
-            backgroundColor: animSquarebackgroundColor.value
+            //  backgroundColor: animSquarebackgroundColor.value
         };
     });
 
     /* Sending the animation style to Animated.View */
-    return <Animated.View style={[s.square, animatedStyle]} >
-        <Text style={{ color: "white", fontSize: 10 }}>Loading...</Text>
-    </Animated.View>
+    return <Animated.Image source={require("../../assets/sun.png")} style={[{ width: 20, height: 20 }, animatedStyle]} />
+
 
 
 }
