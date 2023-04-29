@@ -21,6 +21,7 @@ import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import Constants from "expo-constants";
 import { Spinner } from "./components/Spinner/Spinner";
+import { LearningAnimations } from "./pages/LearningAnimations/LearningAnimations";
 const Stack = createNativeStackNavigator();
 
 const navTheme = {
@@ -30,6 +31,7 @@ const navTheme = {
 };
 
 export default function App() {
+  /*
   const [coordinates, setCoordinates] = useState();
   const [weather, setWeather] = useState();
   const [city, setCity] = useState();
@@ -170,6 +172,9 @@ export default function App() {
               
                            
   );
- 
+ */
+return <>
+<LearningAnimations/>
+</>
  
 }
