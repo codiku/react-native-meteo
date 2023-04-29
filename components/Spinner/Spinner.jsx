@@ -31,7 +31,7 @@ export function Spinner() {
     useEffect(() => {
         animSquareRotateX.value = withRepeat(withTiming("360deg", { duration: 1000 }), -1)
         animSquarebackgroundColor.value = withRepeat(withTiming("#FCC77A", { duration: 1000 }), -1, true)
-        animSquareScale.value = withRepeat(withTiming(3, { duration: 1000 }), -1)
+        animSquareScale.value = withRepeat(withTiming(3, { duration: 1000 }), -1, true)
     }, [])
 
     /* Associating animations to style properties */
