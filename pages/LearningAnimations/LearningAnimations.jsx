@@ -3,21 +3,13 @@ import { useEffect } from "react"
 import { Dimensions, StyleSheet, View } from "react-native"
 import { GestureHandlerRootView, PanGestureHandler } from "react-native-gesture-handler"
 import Animated, { runOnJS, runOnUI, useAnimatedGestureHandler, useAnimatedStyle, useWorkletCallback, useSharedValue, withSpring, withTiming, useDerivedValue } from "react-native-reanimated"
-const LEFT_SCREEN = 0
-const RIGHT_SCREEN = Dimensions.get("screen").width
-const TOP_SCREEN = 0
-const BOT_SCREEN = Dimensions.get("screen").height
 const SQUARE_SIZE = 100
 const CIRCLE_PERIMETER = 400
 const CIRCLE_RADIUS = CIRCLE_PERIMETER / 2
-const HALF_SCREEN_HOR = Dimensions.get("screen").width / 2
-const HALF_SCREEN_VERT = Dimensions.get("screen").height / 2
+
 export function LearningAnimations() {
     const translateX = useSharedValue(0);
     const translateY = useSharedValue(0);
-
-
-
 
     const gestureHandler = useAnimatedGestureHandler({
         onStart: (_, ctx) => {
