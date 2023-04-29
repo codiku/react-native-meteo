@@ -1,5 +1,5 @@
 import { Dimensions, SafeAreaView, Text, View } from "react-native"
-import { WaterDrop } from "../../components/WaterDrop/WaterDrop";
+import { WaterDrop } from "../WaterDrop/WaterDrop";
 import Animated, {
     useSharedValue,
     withSpring,
@@ -11,26 +11,27 @@ import { PanGestureHandler } from "react-native-gesture-handler";
 import { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Txt } from "../../components/Txt/Txt"
+import { Txt } from "../Txt/Txt"
 const LEFT_SCREEN = 0
 const RIGHT_SCREEN = Dimensions.get("screen").width
 const TOP_SCREEN = 0
 const BOT_SCREEN = Dimensions.get("screen").height
-const SQUARE_SIZE = 100
+const SQUARE_SIZE = 50
 const HALF_SCREEN_HOR = Dimensions.get("screen").width / 2
 const HALF_SCREEN_VERT = Dimensions.get("screen").height / 2
-export function LearningAnimations() {
+export function Spinner() {
 
     /* Animations values */
-    const animSquareOpacity = useSharedValue(1);
+    const animSquareScale = useSharedValue(1);
     const animSquareRotateX = useSharedValue("0deg");
-    const animSquarebackgroundColor = useSharedValue("#3878F4");
+    const animSquarebackgroundColor = useSharedValue("#5FD4CE");
 
 
     /* Running animations */
     useEffect(() => {
         animSquareRotateX.value = withRepeat(withTiming("360deg", { duration: 3000 }), -1)
-        animSquarebackgroundColor.value = withRepeat(withTiming("red", { duration: 3000 }), -1, true)
+        animSquarebackgroundColor.value = withRepeat(withTiming("#FCC77A", { duration: 3000 }), -1, true)
+        animSquareScale.value = withRepeat(withTiming(1.5, { duration: 3000 }), -1)
     }, [])
 
     /* Associating animations to style properties */
@@ -39,9 +40,9 @@ export function LearningAnimations() {
             transform: [
                 {
                     rotate: animSquareRotateX.value
-                }
+                },
+                { scale: animSquareScale.value }
             ],
-            opacity: animSquareOpacity.value,
             backgroundColor: animSquarebackgroundColor.value
         };
     });
@@ -57,5 +58,5 @@ export function LearningAnimations() {
 */
 
 const s = StyleSheet.create({
-    square: { borderRadius: 30, justifyContent: 'center', alignItems: 'center', height: SQUARE_SIZE, width: SQUARE_SIZE }
+    square: { borderRadius: 15, justifyContent: 'center', alignItems: 'center', height: SQUARE_SIZE, width: SQUARE_SIZE }
 })

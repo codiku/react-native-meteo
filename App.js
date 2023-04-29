@@ -6,7 +6,7 @@ import {
 } from "react-native-safe-area-context";
 import { Home } from "./pages/Home/Home";
 import { Forecasts } from "./pages/Forecasts/Forecasts.jsx";
-import { Alert, ImageBackground } from "react-native";
+import { Alert, ImageBackground, View } from "react-native";
 import backgroundImg from "./assets/background.png";
 import { useEffect, useState } from "react";
 import {
@@ -20,7 +20,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import Constants from "expo-constants";
-import { LearningAnimations } from "./pages/LearningAnimations/LearningAnimations";
+import { Spinner } from "./components/Spinner/Spinner";
 const Stack = createNativeStackNavigator();
 
 const navTheme = {
@@ -37,7 +37,7 @@ export default function App() {
     "Alata-Regular": require("./assets/fonts/Alata-Regular.ttf"),
   });
 
-  /*
+
   useEffect(() => {
     subscribeToNotifications();
     // App is in background or killed and then the notification is pressed
@@ -140,7 +140,8 @@ export default function App() {
       >
         <SafeAreaProvider>
           <SafeAreaView style={s.container}>
-            {isFontLoaded && (
+          {isFontLoaded && weather ?
+             (
               <Stack.Navigator
                 screenOptions={{
                   headerShown: false,
@@ -158,9 +159,10 @@ export default function App() {
                   )}
                 </Stack.Screen>
                 <Stack.Screen name="Forecasts" component={Forecasts} />
-                <Stack.Screen name="LearnAnimations" component={LearningAnimations} />
+            
               </Stack.Navigator>
-            )}
+            )
+          :  <View style={{flex:1,alignItems:'center', justifyContent:'center'}}><Spinner/></View>}
           </SafeAreaView>
         </SafeAreaProvider>
       </ImageBackground>
@@ -168,6 +170,6 @@ export default function App() {
               
                            
   );
-  */
-  return <LearningAnimations/>    
+ 
+ 
 }
