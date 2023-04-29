@@ -32,7 +32,7 @@ const ListItem = ({ color, translateX, index }) => {
         )
         const borderRadiusInterpOnX = interpolate(translateX.value,
             screenTranslateXInterpolationValues,
-            [0, SQUARE_SIZE / 4, 0],
+            [0, SQUARE_SIZE / 2, 0],
         )
         return {
             transform: [
