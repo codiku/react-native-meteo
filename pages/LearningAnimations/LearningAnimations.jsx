@@ -14,9 +14,6 @@ const pics = ["https://fastly.picsum.photos/id/1045/200/200.jpg?hmac=NOMPYGOtm89
 
 export function LearningAnimations() {
     const translateX = useSharedValue(0)
-    const scrollViewRef = useAnimatedRef()
-    console.log(W)
-
 
     const scrollHandler = useAnimatedScrollHandler({
         onScroll: (e) => {
@@ -50,7 +47,7 @@ const ListItem = ({ color, translateX, index, pic }) => {
         )
         const borderRadiusInterpOnX = interpolate(translateX.value,
             screenTranslateXInterpolationValues,
-            [0, SQUARE_SIZE / 2, 0],
+            [SQUARE_SIZE / 2, 5, SQUARE_SIZE / 2],
         )
         return {
             transform: [
@@ -84,42 +81,3 @@ const s = StyleSheet.create({
     }
 
 })
-const items = [
-    {
-        title: "Upcoming Show Live from Paris",
-        subtitle: "SPRING-SUMMER 2021",
-        picture: require("./assets/chanel.jpg"),
-        top: 0,
-    },
-    {
-        title: "In Boutiques",
-        subtitle: "FALL-WINTER 2020/21",
-        picture: require("./assets/sonnie-hiles-pU4J5VFnqCQ-unsplash-with-gradient.jpg"),
-        top: 0,
-    },
-    {
-        title: "Deauville Film Festival",
-        subtitle: "CHANEL IN CINEMA",
-        picture: require("./assets/laura-chouette-NFrPPyGe5q0-unsplash-with-gradient.jpg"),
-        top: 0,
-    },
-    {
-        title: "IN BOUTIQUES",
-        subtitle: "Métiers d'art 2019/20",
-        picture: require("./assets/butsarakham-buranaworachot-au6Gddf1pZQ-unsplash.jpg"),
-        top: 0,
-    },
-
-    {
-        title: "Balade en Méditerranée",
-        subtitle: "CRUISE 2020/21",
-        picture: require("./assets/christopher-campbell-A3QXXEfcA1U-unsplash.jpg"),
-        top: 0,
-    },
-    {
-        title: "Spring-Summer 2020 Campaign",
-        subtitle: "EYEWEAR",
-        picture: require("./assets/chase-fade-Pb13EUxzMDw-unsplash.jpg"),
-        top: 0,
-    },
-];
