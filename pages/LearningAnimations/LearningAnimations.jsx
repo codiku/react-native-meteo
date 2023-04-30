@@ -8,57 +8,104 @@ const CIRCLE_PERIMETER = 400
 const CIRCLE_RADIUS = CIRCLE_PERIMETER / 2
 const H = Dimensions.get("screen").height
 const W = Dimensions.get("screen").width
-//https://rgbacolorpicker.com/
-const colors = ['rgba(245, 39, 39, 0.8)', 'rgba(245, 140, 39, 0.8)', 'rgba(245, 226, 39, 0.8)', 'rgba(39, 245, 97, 0.8)', 'rgba(39, 153, 245, 0.8)', 'rgba(71, 39, 245, 0.8)', 'rgba(245, 39, 238, 0.8)']
-const pics = ["https://fastly.picsum.photos/id/1045/200/200.jpg?hmac=NOMPYGOtm89-zlf7NNDG7qSjCOy3XpvrdQRBF4aUZgE", "https://fastly.picsum.photos/id/89/200/200.jpg?hmac=urh6JbqBxFLcQQEPfUQ23bUlEH7vg3qqqUOts86_LLI", "https://fastly.picsum.photos/id/23/200/200.jpg?hmac=IMR2f77CBqpauCb5W6kGzhwbKatX_r9IvgWj6n7FQ7c", "https://fastly.picsum.photos/id/543/200/200.jpg?hmac=YuoZMit51ELMe2bbgwymVwwXFjmpaZ7hS_J1MfjC1IQ", "https://fastly.picsum.photos/id/260/200/200.jpg?hmac=Nu9V4Ixqq3HiFhfkcsL5mNRZAZyEHG2jotmiiMRdxGA", "https://fastly.picsum.photos/id/511/200/200.jpg?hmac=QTzrMGu9nrJDRE4TMoboI_EAM5ZdwXF09ylHr7LFZCg", "https://fastly.picsum.photos/id/596/200/200.jpg?hmac=TiMsstBNF6YKq9Gn7QGsihITEUcv_O8QuTXEVR3T6GA"]
+const IMG_MAX_H = 300
+const IMG_MIN_H = 100
+const items = [
+    {
+        title: "Upcoming Show Live from Paris",
+        subtitle: "SPRING-SUMMER 2021",
+        picture: require("./assets/chanel.jpg"),
+    },
+    {
+        title: "In Boutiques",
+        subtitle: "FALL-WINTER 2020/21",
+        picture: require("./assets/sonnie-hiles-pU4J5VFnqCQ-unsplash-with-gradient.jpg"),
+    },
+    {
+        title: "Deauville Film Festival",
+        subtitle: "CHANEL IN CINEMA",
+        picture: require("./assets/laura-chouette-NFrPPyGe5q0-unsplash-with-gradient.jpg"),
+    },
+    {
+        title: "IN BOUTIQUES",
+        subtitle: "Métiers d'art 2019/20",
+        picture: require("./assets/butsarakham-buranaworachot-au6Gddf1pZQ-unsplash.jpg"),
+    },
+
+    {
+        title: "Balade en Méditerranée",
+        subtitle: "CRUISE 2020/21",
+        picture: require("./assets/christopher-campbell-A3QXXEfcA1U-unsplash.jpg"),
+    },
+    {
+        title: "Spring-Summer 2020 Campaign",
+        subtitle: "EYEWEAR",
+        picture: require("./assets/chase-fade-Pb13EUxzMDw-unsplash.jpg"),
+    },
+    {
+        title: "Upcoming Show Live from Paris 2",
+        subtitle: "SPRING-SUMMER 2021 2 ",
+        picture: require("./assets/chanel.jpg"),
+    },
+    {
+        title: "In Boutiques  2",
+        subtitle: "FALL-WINTER 2020/21 2",
+        picture: require("./assets/sonnie-hiles-pU4J5VFnqCQ-unsplash-with-gradient.jpg"),
+    },
+    {
+        title: "Deauville Film Festival 2",
+        subtitle: "CHANEL IN CINEMA 2",
+        picture: require("./assets/laura-chouette-NFrPPyGe5q0-unsplash-with-gradient.jpg"),
+    },
+    {
+        title: "IN BOUTIQUES 2",
+        subtitle: "Métiers d'art 2019/20 2",
+        picture: require("./assets/butsarakham-buranaworachot-au6Gddf1pZQ-unsplash.jpg"),
+    },
+
+    {
+        title: "Balade en Méditerranée 2 ",
+        subtitle: "CRUISE 2020/21 2",
+        picture: require("./assets/christopher-campbell-A3QXXEfcA1U-unsplash.jpg"),
+    },
+    {
+        title: "Spring-Summer 2020 Campaign 2",
+        subtitle: "EYEWEAR",
+        picture: require("./assets/chase-fade-Pb13EUxzMDw-unsplash.jpg"),
+    },
+];
 
 export function LearningAnimations() {
-    const translateX = useSharedValue(0)
+    const yDistance = useSharedValue(0)
+
 
     const scrollHandler = useAnimatedScrollHandler({
         onScroll: (e) => {
-            translateX.value = e.contentOffset.x
+            yDistance.value = e.contentOffset.y
         },
     })
 
     return <Animated.ScrollView
-        snapToOffsets={[
-            0,
-            411.42857142857144,
-            822.857142857,
-            1234.28571429,
-            1645.71428572,
-            2057.14285715,
-            2468.57142858]}
-
-        disableIntervalMomentum={true} scrollEventThrottle={1} onScroll={scrollHandler} horizontal style={[s.container]}>
-        {colors.map((c, i) => <ListItem pic={pics[i]} key={c} index={i} color={c} opacity={(i + 1) / 10} translateX={translateX} />)}
+        scrollEventThrottle={16} onScroll={scrollHandler} style={[s.container]}>
+        {items.map((item, i) => <ListItem item={item} key={item.title} index={i} yDistance={yDistance} />)}
     </Animated.ScrollView>
 
 }
 
-const ListItem = ({ color, translateX, index, pic }) => {
-    const screenTranslateXInterpolationValues = [(index - 1) * W, index * W, (index + 1) * W]
+const ListItem = ({ item, yDistance, index }) => {
 
     const animStyle = useAnimatedStyle(() => {
-        const scaleInterpOnX = interpolate(translateX.value,
-            screenTranslateXInterpolationValues,
-            [0.1, 2, 0.1],
-        )
-        const borderRadiusInterpOnX = interpolate(translateX.value,
-            screenTranslateXInterpolationValues,
-            [SQUARE_SIZE / 2, 5, SQUARE_SIZE / 2],
-        )
         return {
-            transform: [
-                { scale: scaleInterpOnX },
-            ],
-            borderRadius: borderRadiusInterpOnX
+            height: interpolate(
+                yDistance.value,
+                [IMG_MAX_H * (index - 1), IMG_MAX_H * index],
+                [IMG_MIN_H, IMG_MAX_H],
+                Extrapolate.CLAMP
+            )
         }
     })
-    return <View style={[s.listItem, { backgroundColor: color }]} >
-        <Animated.Image style={[s.square, animStyle]} source={{ uri: pic }} />
-    </View>
+    return <Animated.Image resizeMode="cover" style={[s.image, animStyle]} source={item.picture} />
+
 }
 
 const s = StyleSheet.create({
@@ -67,17 +114,11 @@ const s = StyleSheet.create({
     },
     listItem: {
         flex: 1,
-        height: H,
-        width: W,
-        justifyContent: 'center',
-        alignItems: 'center'
+
+
     },
-    square: {
-        height: 200,
-        width: 200,
-        backgroundColor: "white",
-        borderWidth: 2,
-        borderColor: "white"
+    image: {
+        width: "100%"
     }
 
 })

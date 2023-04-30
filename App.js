@@ -174,7 +174,7 @@ export default function App() {
                            
   );
  */
-return <GestureHandlerRootView style={{flex:1}}>
+return <GestureHandlerRootView style={{flex:1 ,backgroundColor:"blue"}}>
 <LearningAnimations/>
 </GestureHandlerRootView>
  
