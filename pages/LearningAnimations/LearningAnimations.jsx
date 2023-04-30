@@ -1,8 +1,8 @@
 
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { Dimensions, StyleSheet, View } from "react-native"
 import { GestureHandlerRootView, PanGestureHandler } from "react-native-gesture-handler"
-import Animated, { runOnJS, runOnUI, useAnimatedGestureHandler, useAnimatedStyle, useWorkletCallback, useSharedValue, withSpring, withTiming, useDerivedValue, useAnimatedScrollHandler, interpolate, Extrapolate } from "react-native-reanimated"
+import Animated, { runOnJS, runOnUI, useAnimatedGestureHandler, scrollTo, useAnimatedStyle, useWorkletCallback, useSharedValue, withSpring, withTiming, useDerivedValue, useAnimatedScrollHandler, interpolate, Extrapolate, useAnimatedRef } from "react-native-reanimated"
 const SQUARE_SIZE = 200
 const CIRCLE_PERIMETER = 400
 const CIRCLE_RADIUS = CIRCLE_PERIMETER / 2
@@ -11,12 +11,30 @@ const W = Dimensions.get("screen").width
 //https://rgbacolorpicker.com/
 const colors = ['rgba(245, 39, 39, 0.8)', 'rgba(245, 140, 39, 0.8)', 'rgba(245, 226, 39, 0.8)', 'rgba(39, 245, 97, 0.8)', 'rgba(39, 153, 245, 0.8)', 'rgba(71, 39, 245, 0.8)', 'rgba(245, 39, 238, 0.8)']
 const pics = ["https://fastly.picsum.photos/id/1045/200/200.jpg?hmac=NOMPYGOtm89-zlf7NNDG7qSjCOy3XpvrdQRBF4aUZgE", "https://fastly.picsum.photos/id/89/200/200.jpg?hmac=urh6JbqBxFLcQQEPfUQ23bUlEH7vg3qqqUOts86_LLI", "https://fastly.picsum.photos/id/23/200/200.jpg?hmac=IMR2f77CBqpauCb5W6kGzhwbKatX_r9IvgWj6n7FQ7c", "https://fastly.picsum.photos/id/543/200/200.jpg?hmac=YuoZMit51ELMe2bbgwymVwwXFjmpaZ7hS_J1MfjC1IQ", "https://fastly.picsum.photos/id/260/200/200.jpg?hmac=Nu9V4Ixqq3HiFhfkcsL5mNRZAZyEHG2jotmiiMRdxGA", "https://fastly.picsum.photos/id/511/200/200.jpg?hmac=QTzrMGu9nrJDRE4TMoboI_EAM5ZdwXF09ylHr7LFZCg", "https://fastly.picsum.photos/id/596/200/200.jpg?hmac=TiMsstBNF6YKq9Gn7QGsihITEUcv_O8QuTXEVR3T6GA"]
+
 export function LearningAnimations() {
     const translateX = useSharedValue(0)
-    const scrollHandler = useAnimatedScrollHandler((e) => {
-        translateX.value = e.contentOffset.x
+    const scrollViewRef = useAnimatedRef()
+    console.log(W)
+
+
+    const scrollHandler = useAnimatedScrollHandler({
+        onScroll: (e) => {
+            translateX.value = e.contentOffset.x
+        },
     })
-    return <Animated.ScrollView onScroll={scrollHandler} horizontal style={[s.container]}>
+
+    return <Animated.ScrollView
+        snapToOffsets={[
+            0,
+            411.42857142857144,
+            822.857142857,
+            1234.28571429,
+            1645.71428572,
+            2057.14285715,
+            2468.57142858]}
+
+        disableIntervalMomentum={true} scrollEventThrottle={1} onScroll={scrollHandler} horizontal style={[s.container]}>
         {colors.map((c, i) => <ListItem pic={pics[i]} key={c} index={i} color={c} opacity={(i + 1) / 10} translateX={translateX} />)}
     </Animated.ScrollView>
 
@@ -28,7 +46,7 @@ const ListItem = ({ color, translateX, index, pic }) => {
     const animStyle = useAnimatedStyle(() => {
         const scaleInterpOnX = interpolate(translateX.value,
             screenTranslateXInterpolationValues,
-            [0.5, 1, 0.5],
+            [0.1, 2, 0.1],
         )
         const borderRadiusInterpOnX = interpolate(translateX.value,
             screenTranslateXInterpolationValues,
@@ -66,3 +84,42 @@ const s = StyleSheet.create({
     }
 
 })
+const items = [
+    {
+        title: "Upcoming Show Live from Paris",
+        subtitle: "SPRING-SUMMER 2021",
+        picture: require("./assets/chanel.jpg"),
+        top: 0,
+    },
+    {
+        title: "In Boutiques",
+        subtitle: "FALL-WINTER 2020/21",
+        picture: require("./assets/sonnie-hiles-pU4J5VFnqCQ-unsplash-with-gradient.jpg"),
+        top: 0,
+    },
+    {
+        title: "Deauville Film Festival",
+        subtitle: "CHANEL IN CINEMA",
+        picture: require("./assets/laura-chouette-NFrPPyGe5q0-unsplash-with-gradient.jpg"),
+        top: 0,
+    },
+    {
+        title: "IN BOUTIQUES",
+        subtitle: "Métiers d'art 2019/20",
+        picture: require("./assets/butsarakham-buranaworachot-au6Gddf1pZQ-unsplash.jpg"),
+        top: 0,
+    },
+
+    {
+        title: "Balade en Méditerranée",
+        subtitle: "CRUISE 2020/21",
+        picture: require("./assets/christopher-campbell-A3QXXEfcA1U-unsplash.jpg"),
+        top: 0,
+    },
+    {
+        title: "Spring-Summer 2020 Campaign",
+        subtitle: "EYEWEAR",
+        picture: require("./assets/chase-fade-Pb13EUxzMDw-unsplash.jpg"),
+        top: 0,
+    },
+];

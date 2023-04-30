@@ -22,6 +22,7 @@ import * as Device from "expo-device";
 import Constants from "expo-constants";
 import { Spinner } from "./components/Spinner/Spinner";
 import { LearningAnimations } from "./pages/LearningAnimations/LearningAnimations";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 const Stack = createNativeStackNavigator();
 
 const navTheme = {
@@ -173,8 +174,8 @@ export default function App() {
                            
   );
  */
-return <>
+return <GestureHandlerRootView style={{flex:1}}>
 <LearningAnimations/>
-</>
+</GestureHandlerRootView>
  
 }
