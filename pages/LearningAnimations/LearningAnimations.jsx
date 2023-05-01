@@ -95,12 +95,13 @@ export function LearningAnimations() {
 const ListItem = ({ item, yDistance, i }) => {
 
     const animStyle = useAnimatedStyle(() => {
+        console.log("scroll", yDistance.value, " index ", i, " ",)
 
         return {
             height: interpolate(yDistance.value,
                 [i * IMG_MAX_H, (i * IMG_MAX_H) - IMG_MAX_H],
                 [IMG_MAX_H, IMG_MIN_H],
-
+                Extrapolate.CLAMP
             )
         }
     })
