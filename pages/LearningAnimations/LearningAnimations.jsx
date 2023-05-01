@@ -87,20 +87,20 @@ export function LearningAnimations() {
 
     return <Animated.ScrollView
         scrollEventThrottle={16} onScroll={scrollHandler} style={[s.container]}>
-        {items.map((item, i) => <ListItem item={item} key={item.title} index={i} yDistance={yDistance} />)}
+        {items.map((item, i) => <ListItem item={item} key={item.title} i={i} yDistance={yDistance} />)}
     </Animated.ScrollView>
 
 }
 
-const ListItem = ({ item, yDistance, index }) => {
+const ListItem = ({ item, yDistance, i }) => {
 
     const animStyle = useAnimatedStyle(() => {
+
         return {
-            height: interpolate(
-                yDistance.value,
-                [IMG_MAX_H * (index - 1), IMG_MAX_H * index],
-                [IMG_MIN_H, IMG_MAX_H],
-                Extrapolate.CLAMP
+            height: interpolate(yDistance.value,
+                [i * IMG_MAX_H, (i * IMG_MAX_H) - IMG_MAX_H],
+                [IMG_MAX_H, IMG_MIN_H],
+
             )
         }
     })
@@ -114,11 +114,10 @@ const s = StyleSheet.create({
     },
     listItem: {
         flex: 1,
-
-
     },
     image: {
-        width: "100%"
+        width: "100%",
+        height: IMG_MIN_H
     }
 
 })
