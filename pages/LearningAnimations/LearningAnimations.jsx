@@ -4,7 +4,7 @@ import Animated, { useAnimatedStyle, useSharedValue, useAnimatedScrollHandler, i
 import { s, IMG_SIZE, TITLE_FONT_SIZE } from "./LearningAnimations.style.js"
 import { IMAGES } from "./constant"
 
-const H = Dimensions.get("screen").height
+const H = Dimensions.get("window").height
 
 export function LearningAnimations() {
     const yDistance = useSharedValue(0)
